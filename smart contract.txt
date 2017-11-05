@@ -102,10 +102,10 @@ contract GlobalCryptoBank is MintableToken {
    string public constant name = "Global Crypto Bank";
    string public constant symbol = "BANK";
    uint32 public constant decimals = 18;
-   uint public INITIAL_SUPPLY = 5000000 * 1 ether;
+   uint public INITIAL_SUPPLY = 50000000 * 1 ether;
    function GlobalCryptoBank() {
        mint(owner, INITIAL_SUPPLY);
-       transfer(0x0e2Bec7F14F244c5D1b4Ce14f48dcDb88fB61690, 200000 * 1 ether);
+       transfer(0x0e2Bec7F14F244c5D1b4Ce14f48dcDb88fB61690, 2000000 * 1 ether);
        finishMinting();
    }
 }
@@ -125,17 +125,17 @@ contract Crowdsale is Ownable {
    uint public soldTokens = 0;
    GlobalCryptoBank public token = new GlobalCryptoBank();
    function Crowdsale () payable {
-       founderAddress = 0x0e2Bec7F14F244c5D1b4Ce14f48dcDb88fB61690;
-       bountyAddress = 0x60511356e71986d74D639Bedbf3DB186011fd9F3;
+       founderAddress = 0xF12B75857E56727c90fc473Fe18C790B364468eD;
+       bountyAddress = 0x0e2Bec7F14F244c5D1b4Ce14f48dcDb88fB61690;
        founderPercent = 90;
        bountyPercent = 10;
-       rate = 33 * 1 ether;
+       rate = 300 * 1 ether;
        preIsoStartDate = 1509321600;
        preIsoEndDate = 1511049600;
        isoStartDate = 1511568000;
        isoEndDate = 1514678399;
-       preIsoTokenLimit = 77500 * 1 ether;
-       isoTokenLimit = 4722500 * 1 ether;
+       preIsoTokenLimit = 775000 * 1 ether;
+       isoTokenLimit = 47225000 * 1 ether;
    }
    modifier isUnderPreIsoLimit(uint value) {
        require((soldTokens+rate.mul(value).div(1 ether)+rate.mul(value).div(1 ether).mul(getPreIsoBonusPercent(value).div(100))) <= preIsoTokenLimit);
@@ -157,8 +157,8 @@ contract Crowdsale is Ownable {
        } else if (now >= preIsoStartDate + 14 days && now <= preIsoStartDate + 21 days) {
            bonusPercent += 30;
        }
-	   
-	   
+       
+       
        if (eth >= 1 && eth < 10) {
            bonusPercent += 2;
        } else if (eth >= 10 && eth < 50) {
